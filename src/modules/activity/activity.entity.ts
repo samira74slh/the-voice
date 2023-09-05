@@ -6,7 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../user/user.entity';
-import { Scores } from '../scores/scores.entity';
+import { Score } from '../scores/score.entity';
 
 @Entity()
 export class Activity {
@@ -32,9 +32,9 @@ export class Activity {
   })
   candidate: User;
 
-  @OneToMany(() => Scores, (scores) => scores.activity, {
+  @OneToMany(() => Score, (score) => score.activity, {
     onDelete: 'NO ACTION',
     onUpdate: 'CASCADE',
   })
-  scores: Scores[];
+  scores: Score[];
 }

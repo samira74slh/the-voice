@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../user/user.entity';
-import { TeamCandidates } from '../team-candidates/team-candidates.entity';
+import { TeamCandidate } from '../team-candidates/team-candidate.entity';
 
 @Entity()
 export class Team {
@@ -16,9 +16,11 @@ export class Team {
   })
   mentor: User;
 
-  @OneToMany(() => TeamCandidates, (TeamCandidates) => TeamCandidates.team, {
+  @OneToMany(() => TeamCandidate, (TeamCandidate) => TeamCandidate.team, {
     onDelete: 'NO ACTION',
     onUpdate: 'CASCADE',
   })
-  candidates: TeamCandidates[];
+  candidates: TeamCandidate[];
+
+  scoreAvg: number;
 }

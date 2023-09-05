@@ -26,4 +26,23 @@ export class ActivityService {
         }
 
     }
+
+    async updateScoreAvgIds(ids: number[]): Promise<void> {
+        try {
+            ids.map(async id => {
+                let act = await this.activityRepository.findOne({
+                    where: { id: id },
+                    relations: { scores: true }
+                });
+                if (act?.scores.length > 0) {
+                    let totalScore = 0;
+                    act?.scores.map(score => totalScore += score.score);
+                    await this.activityRepository.update(act.id,
+                        { scoreAvg: Math.ceil(totalScore / act?.scores.length) })
+                }
+            })
+        } catch (error) {
+            throw new Error(error);
+         }
+    }
 }

@@ -21,7 +21,7 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate({ name, password }: UserValidationDto): Promise<User> {
-    const user = await this.userService.findOnByOptions({
+    const user = await this.userService.findOneByOptions({
       where: { name: name },
     });
     if (user) {

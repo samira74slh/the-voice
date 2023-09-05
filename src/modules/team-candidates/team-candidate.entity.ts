@@ -3,7 +3,7 @@ import { Team } from '../team/team.entity';
 import { User } from '../user/user.entity';
 
 @Entity()
-export class TeamCandidates {
+export class TeamCandidate {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -13,7 +13,7 @@ export class TeamCandidates {
   })
   team: Team;
 
-  @ManyToOne(() => User, (user) => user.teamCandidates, {
+  @ManyToOne(() => User, (user) => user.TeamCandidate, {
     onDelete: 'NO ACTION',
     onUpdate: 'CASCADE',
   })

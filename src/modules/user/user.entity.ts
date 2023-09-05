@@ -1,9 +1,10 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { ROLE } from './enum/role.enum';
 import { Team } from '../team/team.entity';
 import { Gender } from './enum/gender.enum';
 import { Activity } from '../activity/activity.entity';
-import { TeamCandidates } from '../team-candidates/team-candidates.entity';
+import { TeamCandidate } from '../team-candidates/team-candidate.entity';
+import { Score } from '../scores/score.entity';
 
 @Entity()
 export class User {
@@ -41,9 +42,15 @@ export class User {
   })
   activites: Activity[];
 
-  @OneToMany(() => TeamCandidates, (teamCandidates) => teamCandidates.candidate, {
+  @OneToMany(() => TeamCandidate, (TeamCandidate) => TeamCandidate.candidate, {
     onDelete: 'NO ACTION',
     onUpdate: 'CASCADE',
   })
-  teamCandidates: TeamCandidates[];
+  TeamCandidate: TeamCandidate[];
+
+  @OneToOne(() => Score, (score) => score.mentor, {
+    onDelete: 'NO ACTION',
+    onUpdate: 'CASCADE'
+  })
+  score: Score;
 }

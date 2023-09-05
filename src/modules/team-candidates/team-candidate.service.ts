@@ -1,16 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TeamCandidates } from './team-candidates.entity';
+import { TeamCandidate } from './team-candidate.entity';
 import { FindOneOptions, Repository } from 'typeorm';
 import { CreateCandidateTeamDto } from '../team/dto/create-cadidate-team.dto';
 
 @Injectable()
-export class TeamCandidatesService {
+export class TeamCandidateervice {
     constructor(
-        @InjectRepository(TeamCandidates) private readonly tCandidatesReporitory: Repository<TeamCandidates>
+        @InjectRepository(TeamCandidate) private readonly tCandidatesReporitory: Repository<TeamCandidate>
     ) { }
 
-    async findOnByOptions(options: FindOneOptions<TeamCandidates>): Promise<TeamCandidates | null> {
+    async findOneByOptions(options: FindOneOptions<TeamCandidate>): Promise<TeamCandidate | null> {
         try {
             return await this.tCandidatesReporitory.findOne(options);
         } catch (error) {
@@ -18,9 +18,9 @@ export class TeamCandidatesService {
         }
     }
 
-    async bulkCreate({ candidateIds, teamId }: CreateCandidateTeamDto): Promise<TeamCandidates[]> {
+    async bulkCreate({ candidateIds, teamId }: CreateCandidateTeamDto): Promise<TeamCandidate[]> {
         try {
-            let newTeamCondidate: TeamCandidates[] = [];
+            let newTeamCondidate: TeamCandidate[] = [];
             candidateIds.map(async candidateId => {
                 let candidate = await this.tCandidatesReporitory.findOne({
                     where: {

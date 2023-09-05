@@ -1,9 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Activity } from '../activity/activity.entity';
 import { Max } from 'class-validator';
+import { User } from '../user/user.entity';
 
 @Entity()
-export class Scores {
+export class Score {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -17,4 +18,11 @@ export class Scores {
     onUpdate: 'CASCADE',
   })
   activity: Activity;
+
+  @OneToOne(() => User, (user) => user.score, {
+    onDelete: 'NO ACTION',
+    onUpdate: 'CASCADE'
+  })
+  @JoinColumn()
+  mentor: User;
 }

@@ -22,12 +22,9 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-# the-voice
-## Description
+# the-voice### Install Dependencies
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
+This project needs some dependencies. Let's go install it.
 
 ```bash
 $ npm install
@@ -42,33 +39,37 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## Create environment
+
+Make your own environment file with a copy of `env.example` and adjust values to suit your own environment.
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cp .env.example .env
 ```
 
-## Support
+## Description
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+This project is implemented based on the following description:
 
-## Stay in touch
+Here are the requirements - 
+You are a part of 'The Voice' TV show production team. you are in charge of developing a management system to monitor the participants performance in the show.
+The show has 3 types of users: an admin, mentors, and candidates.
+Each candidate belongs to one of the mentors teams, while mentors on the other hand can mentor more than one team.
+Each candidate gains scores for songs he/she performs. Each performance is scored by all the mentors on a scale of 0-100
+The mentor can review the scores of the candidates in his teams 
+The admin can review the scores of all the candidates in all the teams
+Notes:
+The project should be developed using Express.js or Laravel on the server side and Vue or jQuery on the Front-end.
+We expect you to create the supporting models, Business logic and views. 
+Tasks:
+Each activity is composed of : a song name, date of performance, each mentors' score, an average score.
+Create a management command to generate fake users of all types with all the needed relations, and activities
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+Tasks(UI):
+A mentor should be able to login into the management system.
+Upon authentication the mentor should get a page listing the candidates in each team he mentors
+Clicking a candidate will display a list of all his activities, his average score, and his team's average score
+When an admin logins, he will view all the teams and their average scores
+The admin will be able to filter the view so only some teams will be displayed, and will be able to click each team to see its candidates activities.

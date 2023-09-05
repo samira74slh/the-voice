@@ -5,20 +5,10 @@ export const SwaggerConfig = (app: INestApplication): void => {
   const config = app.get(ConfigService);
   const option = new DocumentBuilder()
     .setTitle('The Voice')
-    .setDescription('Api Tool for')
+    .setDescription('Api Tools')
     .setVersion('v0.0.1')
     .addServer(config.get('origin'))
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        name: 'JWT',
-        description: 'Enter JWT token',
-        in: 'header',
-      },
-      'JWT',
-    )
+    .addApiKey({ type: 'apiKey', name: 'cookie', in: 'header' }, 'cookie')
     .build();
   const document = SwaggerModule.createDocument(app, option, {
     deepScanRoutes: true,

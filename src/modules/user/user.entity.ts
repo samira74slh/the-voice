@@ -3,6 +3,7 @@ import { ROLE } from './enum/role.enum';
 import { Team } from '../team/team.entity';
 import { Gender } from './enum/gender.enum';
 import { Activity } from '../activity/activity.entity';
+import { TeamCandidates } from '../team-candidates/team-candidates.entity';
 
 @Entity()
 export class User {
@@ -39,4 +40,10 @@ export class User {
     onUpdate: 'CASCADE',
   })
   activites: Activity[];
+
+  @OneToMany(() => TeamCandidates, (teamCandidates) => teamCandidates.candidate, {
+    onDelete: 'NO ACTION',
+    onUpdate: 'CASCADE',
+  })
+  teamCandidates: TeamCandidates[];
 }

@@ -1,5 +1,6 @@
 import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Team } from '../team/team.entity';
+import { User } from '../user/user.entity';
 
 @Entity()
 export class TeamCandidates {
@@ -11,4 +12,10 @@ export class TeamCandidates {
     onUpdate: 'CASCADE',
   })
   team: Team;
+
+  @ManyToOne(() => User, (user) => user.teamCandidates, {
+    onDelete: 'NO ACTION',
+    onUpdate: 'CASCADE',
+  })
+  candidate: User;
 }

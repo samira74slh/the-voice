@@ -11,7 +11,8 @@ import { AuthService } from './auth.service';
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
-  x;
+
+  
   @ApiOperation({ summary: 'login to app' })
   @ApiConsumes('application/x-www-form-urlencoded')
   @UseGuards(LocalAuthGuard)
@@ -20,7 +21,7 @@ export class AuthController {
     @Body() info: UserValidationDto,
     @USER() user: User,
     @Res() res: Response,
-  ): Promise<void> {
+  ){
     const token = await this.authService.getAccessToken(user);
     res.cookie('accessToken', token);
     res.json(user).status(200);

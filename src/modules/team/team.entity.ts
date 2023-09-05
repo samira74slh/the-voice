@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from '../user/user.entity';
 import { TeamCandidates } from '../team-candidates/team-candidates.entity';
 
@@ -6,6 +6,9 @@ import { TeamCandidates } from '../team-candidates/team-candidates.entity';
 export class Team {
   @PrimaryGeneratedColumn()
   id: number;
+
+  @Column({ type: 'varchar', length: 100, nullable: false, unique: true })
+  name: string;
 
   @ManyToOne(() => User, (user) => user.teams, {
     onDelete: 'NO ACTION',
